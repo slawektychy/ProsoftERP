@@ -1,17 +1,14 @@
-﻿using Modules.Kartoteki.Kontrahenci;
-using ProsoftERP;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prosoft.Modules.Kartoteki.Kontrahenci;
+using Prosoft.Core;
+using System.Reflection;
 
-namespace Modules.Kartoteki
+namespace Prosoft.Modules.Kartoteki
 {
     public class KartotekiModule : IModule
     {
         public string Name => "Kartoteki";
-
+        public Assembly Assembly => Assembly.GetExecutingAssembly();
+        
         public void Initialize()
         {
             Console.WriteLine("Moduł kartotek został załadowany!");
@@ -23,13 +20,28 @@ namespace Modules.Kartoteki
         public void Register()
         {
             Console.WriteLine("Rejestracja modułu Kartoteki");
-            RegisterTable(new KontrahenciTable());
+            RegisterTables();
         }
 
-        private static void RegisterTable<T>(T table) where T : class
+        public void RegisterTables()
         {
-            registeredTables.Add(table);
-            Console.WriteLine($"Zarejestrowano tabelę {typeof(T).Name}");
+            var tableTypes = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.BaseType != null && t.BaseType.IsGenericType &&
+                            t.BaseType.GetGenericTypeDefinition() == typeof(BaseTable<>));
+
+            foreach (var type in tableTypes)
+            {
+                var instance = Activator.CreateInstance(type) as dynamic;
+                if (instance != null)
+                {
+                    if (instance.ModuleName == "Kartoteki")
+                    {
+                        registeredTables.Add(instance);
+                        Console.WriteLine($"Zarejestrowano tabelę {type.Name} w module Kartoteki");
+                    }
+                }
+            }
         }
     }
 

@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsoftERP", "ProsoftERP\ProsoftERP.csproj", "{755A65EE-C717-4BC3-A179-F26DE8DB4169}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsoftERPWindowsUI", "ProsoftERPWindowsUI\ProsoftERPWindowsUI.csproj", "{A9F097F3-9AD6-4921-8508-337BC73AE1AB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3} = {7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules", "Modules\Modules.csproj", "{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosoft.Modules", "Modules\Prosoft.Modules.csproj", "{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosoft.Core", "Prosoft.Core\Prosoft.Core.csproj", "{ADD5DF1B-9DF9-4280-A465-751031986344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{755A65EE-C717-4BC3-A179-F26DE8DB4169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{755A65EE-C717-4BC3-A179-F26DE8DB4169}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{755A65EE-C717-4BC3-A179-F26DE8DB4169}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{755A65EE-C717-4BC3-A179-F26DE8DB4169}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +26,10 @@ Global
 		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD5DF1B-9DF9-4280-A465-751031986344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD5DF1B-9DF9-4280-A465-751031986344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD5DF1B-9DF9-4280-A465-751031986344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD5DF1B-9DF9-4280-A465-751031986344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

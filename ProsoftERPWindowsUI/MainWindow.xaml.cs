@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows;
-using ProsoftERP;
+using MahApps.Metro.Controls;
+using Prosoft.Core;
+using ProsoftERPWindowsUI.Windows;
 
 namespace ProsoftERP.WPF
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private ModuleLoader _loader = new ModuleLoader();
 
@@ -18,9 +20,15 @@ namespace ProsoftERP.WPF
         {
             _loader.LoadModules("./Modules");
             foreach (var module in _loader.Modules)
-            {   
-                ModulesList.Items.Add(module.Name);
+            {
+                ApplicationContext.Instance.RegisterModule(module);
             }
+        }
+
+        private void DeveloperMenuClick(object sender, RoutedEventArgs e)
+        {
+            var devWindow = new DeveloperWindow();
+            devWindow.Show();
         }
     }
 }

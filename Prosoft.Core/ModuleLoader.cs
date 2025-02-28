@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
-namespace ProsoftERP
+namespace Prosoft.Core
 {
-    public interface IModule
-    {
-        string Name { get; }
-        void Initialize();
-    }
-
     public class ModuleLoader
     {
+
         private readonly List<IModule> _modules = new List<IModule>();
 
         public List<IModule> Modules
         {
-            get { return _modules; } 
+            get { return _modules; }
         }
 
 
@@ -48,17 +39,6 @@ namespace ProsoftERP
                     Console.WriteLine($"Error loading module from {file}: {ex.Message}");
                 }
             }
-        }
-    }
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Prosoft ERP System");
-            ModuleLoader loader = new ModuleLoader();
-            loader.LoadModules("./Modules");
-            Console.WriteLine("All modules loaded.");
         }
     }
 }
