@@ -11,4 +11,7 @@ namespace ProsoftERP.SampleModule
             Console.WriteLine("Testowy Moduł został załadowany!");
         }
     }
+
+
+   
 }
