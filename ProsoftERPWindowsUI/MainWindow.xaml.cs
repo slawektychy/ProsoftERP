@@ -2,9 +2,8 @@
 using System.Windows;
 using MahApps.Metro.Controls;
 using Prosoft.Core;
-using ProsoftERPWindowsUI.Windows;
 
-namespace ProsoftERP.WPF
+namespace Prosoft.WindowsUI
 {
     public partial class MainWindow
     {
@@ -14,6 +13,7 @@ namespace ProsoftERP.WPF
         {
             InitializeComponent();
             LoadModules();
+            DataContext = new MainWindowViewModel();
         }
 
         private void LoadModules()

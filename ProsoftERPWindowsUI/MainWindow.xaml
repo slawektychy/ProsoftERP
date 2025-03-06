@@ -1,7 +1,7 @@
-﻿<controls:MetroWindow x:Class="ProsoftERP.WPF.MainWindow"
+﻿<controls:MetroWindow x:Class="Prosoft.WindowsUI.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      Title="Moja Aplikacja"
+                      Title="PROSOFT ERP"
                       Height="450"
                       Width="800"
                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -9,25 +9,28 @@
                       GlowBrush="{DynamicResource AccentColorBrush}">
         
     
-    <DockPanel>
+        
         <!-- MENU GÓRNE -->
-        <Menu DockPanel.Dock="Top">
+        <!--<Menu DockPanel.Dock="Top">
             <MenuItem Header="Kartoteki" />
             <MenuItem Header="Developer" Click="DeveloperMenuClick"/>
-        </Menu>
- 
-        <Grid>
-            <controls:Tile Title="Nazwa modułu"
-               Margin="3"
-               controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
-               Background="Teal"
-               HorizontalTitleAlignment="Right">
-                <iconPacks:PackIconModern Width="40"
-                              Height="40"
-                              Kind="Email" />
-            </controls:Tile>
-        </Grid>
+        </Menu>-->
 
-    </DockPanel>
+        <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}" HorizontalAlignment="Stretch" Width="Auto" >
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding Content}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+
+
+  
     
 </controls:MetroWindow>

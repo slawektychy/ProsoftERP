@@ -10,10 +10,16 @@ namespace Prosoft.Core
     public interface IModule
     {
         string Name { get; }
+        string Title { get; }
+        string Description { get; }
+        Int16 Priority { get; }
         Assembly Assembly { get; }
 
         void Register();
         void RegisterTables();
         void Initialize();
+
+
+
     }
 }

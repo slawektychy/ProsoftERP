@@ -24,6 +24,7 @@ namespace Prosoft.Core
                 {
                     Assembly assembly = Assembly.LoadFrom(file);
                     var types = assembly.GetTypes().Where(t => typeof(IModule).IsAssignableFrom(t) && !t.IsInterface);
+                    var eee = types;
                     foreach (var type in types)
                     {
                         if (Activator.CreateInstance(type) is IModule module)

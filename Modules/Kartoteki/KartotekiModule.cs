@@ -7,6 +7,9 @@ namespace Prosoft.Modules.Kartoteki
     public class KartotekiModule : IModule
     {
         public string Name => "Kartoteki";
+        public string Title => "Kartoteki systemowe";
+        public string Description => "Moduł systemowy zawierający definicje obiektów kartotekowych";
+        public Int16 Priority => 1;
         public Assembly Assembly => Assembly.GetExecutingAssembly();
         
         public void Initialize()

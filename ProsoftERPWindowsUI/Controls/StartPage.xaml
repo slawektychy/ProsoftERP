@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Prosoft.WindowsUI.StartPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:uic="clr-namespace:Prosoft.WindowsUI.UIControls">
+
+
+    <Control.Resources>
+
+        <ResourceDictionary>
+
+
+            <ItemsPanelTemplate x:Key="myItemsPanelTemplate" >
+                <UniformGrid Columns="1" Rows="8" />
+            </ItemsPanelTemplate>
+            <DataTemplate x:Key="myDataTemplate" >
+                <Label Content="TTTT"/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+        </Control.Resources>
+          
+    
+
+
+
+    <ItemsControl ItemsSource="{Binding Modules}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid Columns="1"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid Margin="20 0" Width="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                         
+                    </Grid.ColumnDefinitions>
+                    
+                    
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel>
+                            <uic:UILabel Content="{Binding Title}" Style="{StaticResource LabelHeader_1}"/>
+                            <uic:UILabel Content="{Binding Description}" Margin="0 -8 0 0"/>
+                            <Border Height="1" Background="Gray" Margin="0 2 0 8"/>
+
+
+                            <!--<uic:UILabel Content="{Binding Title}" Margin="0 -8 0 0"/>-->
+
+                        
+
+
+                        </StackPanel>
+                        
+                        
+                      
+
+
+
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+
+
+
+</UserControl>
+
+
+<!--<ListView Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"
+        ItemsSource="{Binding TmpTiles}" 
+        ItemsPanel= "{StaticResource myItemsPanelTemplate}"
+        ItemTemplate="{StaticResource myDataTemplate}" 
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"/>-->
