@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Prosoft.Core\Prosoft.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Kartoteki\Pracownicy\" />
+  </ItemGroup>
+
 </Project>

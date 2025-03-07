@@ -22,46 +22,19 @@ using System.Windows.Shapes;
 namespace Prosoft.WindowsUI
 {
 
-    public partial class tmpCtrl
-    {
-        public int ID { get; set; } 
-        public string TileName { get; set; } = string.Empty;
-    }
-
-
     /// <summary>
     /// Logika interakcji dla klasy StartPage.xaml
     /// </summary>
     public partial class StartPage : UserControl, INotifyPropertyChanged
     {
-
-
-        List<tmpCtrl> tmpTiles;
-        public List<tmpCtrl> TmpTiles 
-        {
-            get { return tmpTiles; }
-            set { tmpTiles = value; OnPropertyChanged("TmpTiles"); } 
-        }
-
-
-
-
-
         public IEnumerable<IModule> Modules { get; set; } = ApplicationContext.Instance.GetLoadedModules();
-        
-        
 
         public StartPage()
         {
             DataContext = this;
             InitializeComponent();
 
-            TmpTiles = new List<tmpCtrl>();
-            TmpTiles.Add(new tmpCtrl { TileName = "Kontrahenci" });
-            TmpTiles.Add(new tmpCtrl { TileName = "Pracownicy" });
-
-
-            var x = TmpTiles;
+            //var x = Modules.FirstOrDefault().TableObjects;
 
         }
 

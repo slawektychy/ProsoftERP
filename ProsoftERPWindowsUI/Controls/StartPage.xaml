@@ -51,11 +51,25 @@
                             <Border Height="1" Background="Gray" Margin="0 2 0 8"/>
 
 
-                            <!--<uic:UILabel Content="{Binding Title}" Margin="0 -8 0 0"/>-->
-
-                        
+                            <!--<ComboBox ItemsSource="{Binding  TableObjects}" DisplayMemberPath="TableName" />-->
 
 
+                            <ItemsControl ItemsSource="{Binding TableObjects}">
+                                 <ItemsControl.ItemsPanel>
+                                     <ItemsPanelTemplate>
+                                         <!--<UniformGrid Columns="2"/>-->
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                 </ItemsControl.ItemsPanel>
+
+                                 <ItemsControl.ItemTemplate>
+                                     <DataTemplate>
+                                         <Border Background="GreenYellow" Margin="0 20 10 0" CornerRadius="5" Width="200" Height="100" BorderThickness="1" BorderBrush="Gray">
+                                            <uic:UILabel Content="{Binding TableName}" Style="{StaticResource LabelHeader_1}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                         </Border>
+                                     </DataTemplate>
+                                 </ItemsControl.ItemTemplate>
+                             </ItemsControl>
                         </StackPanel>
                         
                         

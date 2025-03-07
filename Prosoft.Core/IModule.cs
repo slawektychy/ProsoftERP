@@ -15,9 +15,15 @@ namespace Prosoft.Core
         Int16 Priority { get; }
         Assembly Assembly { get; }
 
+        List<object> TableObjects { get; }
+        List<object> RowObjects { get; }
+
+        void Initialize();
+
         void Register();
         void RegisterTables();
-        void Initialize();
+        void RegisterRows();
+
 
 
 

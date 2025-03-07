@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Prosoft.Core;
 
-namespace Prosoft.Modules.Kartoteki.Kontrahenci
+namespace Prosoft.Modules.Kartoteki
 {
     public class KontrahentRow : BaseRow
     {
         public string Kod { get; set; }
         public string Nazwa { get; set; }
 
-        public KontrahentRow(int id, string kod, string nazwa)
+        public KontrahentRow(int Id, string Kod, string Nazwa)
         {
-            ID = id;
-            Kod = kod;
-            Nazwa = nazwa;
+            ID = Id;
+            Kod = Kod;
+            Nazwa = Nazwa;
         }
     }
 }
