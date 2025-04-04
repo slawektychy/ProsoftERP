@@ -1,12 +1,10 @@
-﻿<controls:MetroWindow x:Class="Prosoft.WindowsUI.MainWindow"
+﻿<Window x:Class="Prosoft.WindowsUI.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       Title="PROSOFT ERP"
                       Height="450"
                       Width="800"
-                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-                      GlowBrush="{DynamicResource AccentColorBrush}">
+        >
         
     
         
@@ -16,7 +14,9 @@
             <MenuItem Header="Developer" Click="DeveloperMenuClick"/>
         </Menu>-->
 
-        <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}" HorizontalAlignment="Stretch" Width="Auto" >
+    <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}" HorizontalAlignment="Stretch" Width="Auto" 
+                
+                >
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}" />
@@ -33,4 +33,4 @@
 
   
     
-</controls:MetroWindow>
+</Window>

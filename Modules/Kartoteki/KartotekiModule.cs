@@ -43,7 +43,7 @@ namespace Prosoft.Modules.Kartoteki
                 var instance = Activator.CreateInstance(type) as dynamic;
                 if (instance != null)
                 {
-                    if (instance.ModuleName == Name)
+                    if (instance.GetModuleName() == Name)
                     {
                         _tableObjects.Add(instance);
                         //Console.WriteLine($"Zarejestrowano tabelę {type.Name} w module Kartoteki");
@@ -61,54 +61,6 @@ namespace Prosoft.Modules.Kartoteki
 
 
 
-    //public abstract class BaseModule : IModule
-    //{
-    //    public abstract string Name { get; }
-    //    public abstract string Title { get; }
-    //    public abstract string Description { get; }
-    //    public abstract Int16 Priority { get; }
-    //    public virtual Assembly Assembly => Assembly.GetExecutingAssembly(); // Można nadpisać dla modułów w innych assembly
-
-    //    private readonly List<object> _tableObjects = new();
-    //    private readonly List<object> _rowObjects = new();
-
-    //    public List<object> TableObjects => _tableObjects;
-    //    public List<object> RowObjects => _rowObjects;
-
-    //    public virtual void Initialize()
-    //    {
-    //        // Domyślna implementacja - można nadpisać
-    //    }
-
-    //    public void Register()
-    //    {
-    //        RegisterTables();
-    //        RegisterRows();
-    //    }
-
-    //    protected virtual void RegisterTables()
-    //    {
-    //        var tableTypes = Assembly.GetTypes()
-    //            .Where(t => t.BaseType is { IsGenericType: true } &&
-    //                        t.BaseType.GetGenericTypeDefinition() == typeof(BaseTable<>));
-
-    //        foreach (var type in tableTypes)
-    //        {
-    //            if (Activator.CreateInstance(type) is not dynamic instance) continue;
-
-    //            if (instance.ModuleName == Name) // Sprawdzamy, czy tabela należy do tego modułu
-    //            {
-    //                _tableObjects.Add(instance);
-    //                Console.WriteLine($"Zarejestrowano tabelę {type.Name} w module {Name}");
-    //            }
-    //        }
-    //    }
-
-    //    protected virtual void RegisterRows()
-    //    {
-    //        // Implementacja rejestracji wierszy (jeśli potrzeba)
-    //    }
-    //}
 
 
 }

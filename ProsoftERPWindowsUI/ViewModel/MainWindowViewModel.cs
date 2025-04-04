@@ -15,8 +15,7 @@ namespace Prosoft.WindowsUI
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<TabItemModel> Tabs { get; set; } = new ObservableCollection<TabItemModel>();
-        public ObservableCollection<IModule> Modules { get; }
-
+        //public ObservableCollection<IModule> Modules { get; } = new ObservableCollection<IModule>(ApplicationContext.Instance.GetLoadedModules());
 
         private int _selectedTabIndex;
 
@@ -33,16 +32,23 @@ namespace Prosoft.WindowsUI
         public MainWindowViewModel()
         {
             // Dodajemy stronę startową
-            AddTab("...", new StartPage());
-            Modules = new ObservableCollection<IModule>(ApplicationContext.Instance.GetLoadedModules());
+            SetTabContent("...", new StartPage(this));
 
         }
 
-        public void AddTab(string title, UserControl content)
+        public void SetTabContent(string title, UserControl content)
         {
-            var newTab = new TabItemModel(title, content);
-            Tabs.Add(newTab);
-            SelectedTabIndex = Tabs.Count - 1;
+            var existingTab = Tabs.Where(t=>t.Title == title).FirstOrDefault();
+            if (existingTab != null)
+            {
+                SelectedTabIndex = Tabs.IndexOf(existingTab);
+            }
+            else
+            {
+                var newTab = new TabItemModel(title, content);
+                Tabs.Add(newTab);
+                SelectedTabIndex = Tabs.Count - 1;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

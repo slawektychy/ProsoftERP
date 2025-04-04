@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow x:Class="Prosoft.WindowsUI.DeveloperWindow"
+﻿<Window x:Class="Prosoft.WindowsUI.DeveloperWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,6 @@
         mc:Ignorable="d"
 
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        GlowBrush="{DynamicResource AccentColorBrush}"
-        
                       
         Title="Narzędzia diagnostyczne" Height="450" Width="800">
 
@@ -19,7 +17,7 @@
                 <StackPanel>
                 <Label Content="Lista załadowanych modułów:"/>
                     <DataGrid ItemsSource="{Binding LoadaedModules}" AutoGenerateColumns="False"
-                              Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
+                              
                               >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa modułu" Width="150" Binding = "{Binding Name, IsAsync=True}"/>
@@ -33,4 +31,4 @@
             <TabItem Header="Kontekst"/>
         </TabControl>
     </Grid>
-</controls:MetroWindow>
+</Window>

@@ -10,7 +10,8 @@ namespace Prosoft.Modules.Kartoteki
     public class PracownicyTable : BaseTable<PracownikRow>
     {
         public override string TableName => "Pracownicy";
-        public override string ModuleName => "Kartoteki";
+        public override string GetTableName() { return TableName; }
+        public override string GetModuleName() { return "Kartoteki"; }
 
         public PracownicyTable()
         {

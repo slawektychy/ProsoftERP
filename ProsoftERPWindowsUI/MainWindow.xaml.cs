@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using MahApps.Metro.Controls;
 using Prosoft.Core;
 
 namespace Prosoft.WindowsUI

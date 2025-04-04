@@ -10,11 +10,16 @@ namespace Prosoft.Modules.Kartoteki
     public class KontrahenciTable : BaseTable<KontrahentRow>
     {
         public override string TableName => "Kontrahenci";
-        public override string ModuleName => "Kartoteki";
+        public override string GetTableName() { return TableName; }
+        
+        public override string GetModuleName() { return "Kartoteki"; }
+
 
         public KontrahenciTable()
         {
             //Console.WriteLine("Inicjalizacja tabeli Kontrahenci");
         }
+
+
     }
 }
