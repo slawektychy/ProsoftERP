@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Prosoft.Modules.Kartoteki
 {
+    [MenuRegistration("Kartoteki/Pracownicy")]
     public class PracownicyTable : BaseTable<PracownikRow>
     {
         public override string TableName => "Pracownicy";

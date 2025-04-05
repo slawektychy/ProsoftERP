@@ -7,7 +7,7 @@ using Prosoft.Core;
 
 namespace Prosoft.Modules.Kartoteki
 {
-
+    [MenuRegistration("Kartoteki/Kontrahenci")]
     public class KontrahenciTable : BaseTable<KontrahentRow>
     {
         public override string TableName => "Kontrahenci";
@@ -18,7 +18,6 @@ namespace Prosoft.Modules.Kartoteki
         {
             //Console.WriteLine("Inicjalizacja tabeli Kontrahenci");
         }
-
 
     }
 }

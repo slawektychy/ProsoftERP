@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,8 @@ namespace Prosoft.WindowsUI
 
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+
+
             var border = sender as Border;
 
             if (border != null)

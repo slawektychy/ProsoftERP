@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,10 @@ namespace Prosoft.WindowsUI
             // Dodajemy stronę startową
             SetTabContent("...", new StartPage(this));
             SetLeftMenuContent();
+
+
+
+          
         }
 
         public void SetTabContent(string title, UserControl content)
