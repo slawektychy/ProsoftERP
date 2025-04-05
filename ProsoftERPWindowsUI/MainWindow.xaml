@@ -3,34 +3,63 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       Title="PROSOFT ERP"
                       Height="450"
-                      Width="800"
-        >
-        
-    
-        
-        <!-- MENU GÓRNE -->
-        <!--<Menu DockPanel.Dock="Top">
+                      Width="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu DockPanel.Dock="Top" Grid.ColumnSpan="2">
             <MenuItem Header="Kartoteki" />
             <MenuItem Header="Developer" Click="DeveloperMenuClick"/>
-        </Menu>-->
-
-    <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}" HorizontalAlignment="Stretch" Width="Auto" 
-                
-                >
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Title}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-
-            <TabControl.ContentTemplate>
-                <DataTemplate>
-                    <ContentControl Content="{Binding Content}" />
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
+        </Menu>
 
 
-  
-    
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            
+            <Image Margin="20" Source="/Images/Prosoft.png"  />
+
+
+                <TreeView Grid.Row="1" ItemsSource="{Binding MenuItems}" FontSize="14">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Header}" />
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+
+        </Grid>
+        
+        
+        <Grid Grid.Row="1" Grid.Column="1">
+            <TabControl ItemsSource="{Binding Tabs}" SelectedIndex="{Binding SelectedTabIndex}" HorizontalAlignment="Stretch" Width="Auto" Grid.Row="1">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" />
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding Content}" />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </Grid>
+    </Grid>
+
+
+
 </Window>

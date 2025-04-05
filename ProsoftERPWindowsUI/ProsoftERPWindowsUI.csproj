@@ -10,6 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Prosoft.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Prosoft.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Prosoft.Core\Prosoft.Core.csproj" />
   </ItemGroup>
 

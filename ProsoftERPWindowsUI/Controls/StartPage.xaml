@@ -65,8 +65,8 @@
 
                                  <ItemsControl.ItemTemplate>
                                      <DataTemplate>
-                                         <Border MouseLeftButtonUp="Border_MouseLeftButtonUp" Background="GreenYellow" Margin="0 20 10 0" CornerRadius="5" Width="200" Height="100" BorderThickness="1" BorderBrush="Gray">
-                                            <uic:UILabel Content="{Binding TableName}" Style="{StaticResource LabelHeader_1}"  HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                         <Border MouseLeftButtonUp="Border_MouseLeftButtonUp" Background="Green"  Margin="0 20 10 0" CornerRadius="5" Width="200" Height="100" BorderThickness="1" BorderBrush="Gray">
+                                            <uic:UILabel Content="{Binding TableName}" Style="{StaticResource LabelHeader_1}"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
                                          </Border>
                                      </DataTemplate>
                                  </ItemsControl.ItemTemplate>
