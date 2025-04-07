@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Neurino.Core
+@using Neurino.Core.Models
+@using Neurino.Shared.UI.Components
+
+<div class="d-flex" style="height: 100vh;">
+    <div class="border-end bg-light p-2" style="width: 250px;">
+        <DynamicMenu MenuGroups="menuGroups" />
+    </div>
+
+    <div class="p-3 flex-grow-1">
+        <h3>Witamy!</h3>
+        <p>Tu pojawi się zawartość po kliknięciu.</p>
+    </div>
+</div>
+
+@code {
+    private List<MenuGroup> menuGroups;
+
+    protected override void OnInitialized()
+    {
+        menuGroups = new()
+        {
+            new MenuGroup
+            {
+                Title = "Kartoteki",
+                Items = new()
+                {
+                    new MenuItem { Title = "Kontrahenci", Link = "/kontrahenci" },
+                    new MenuItem { Title = "Pracownicy", Link = "/pracownicy" }
+                }
+            },
+            new MenuGroup
+            {
+                Title = "Magazyn",
+                Items = new()
+                {
+                    new MenuItem { Title = "Przyjęcia", Link = "/przyjecia" },
+                    new MenuItem { Title = "Wydania", Link = "/wydania" }
+                }
+            }
+        };
+    }
+}

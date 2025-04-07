@@ -1,0 +1,27 @@
+﻿@using Neurino.Core
+@using Microsoft.AspNetCore.Components.Routing
+@using Neurino.Core.Models
+
+<div id="accordionMenu" class="flex-column">
+    @foreach (var group in MenuGroups)
+    {
+        var collapseId = $"collapse_{group.Title.Replace(' ','_')}";
+
+    <div class="nav-item px-3 mb-2">
+        <a class="nav-link" data-bs-toggle="collapse" href="#@collapseId" role="button">
+            @group.Title
+        </a>
+        <div class="collapse ps-3" id="@collapseId" data-bs-parent="#accordionMenu">
+            @foreach (var item in group.Items)
+                {
+                    <NavLink class="nav-link" href="@item.Link" Match="NavLinkMatch.All">@item.Title</NavLink>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<MenuGroup> MenuGroups { get; set; } = new();
+}
