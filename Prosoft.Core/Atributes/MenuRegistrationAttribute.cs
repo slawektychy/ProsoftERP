@@ -1,12 +1,19 @@
 ﻿
-
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class MenuRegistrationAttribute : Attribute
+namespace Prosoft.Core.Atributes
 {
-    public string MenuPath { get; }
 
-    public MenuRegistrationAttribute(string menuPath)
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public class MenuRegistrationAttribute : Attribute
     {
-        MenuPath = menuPath;
+        public string MenuPath { get; }
+        public Type TargetType { get; }
+
+        public MenuRegistrationAttribute(string menuPath, Type targetType)
+        {
+            MenuPath = menuPath;
+            TargetType = targetType;
+        }
     }
 }
+
+

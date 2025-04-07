@@ -1,4 +1,5 @@
 ﻿using Prosoft.Core;
+using Prosoft.Core.Atributes;
 using Prosoft.WindowsUI.Controls;
 using System;
 using System.Collections;
@@ -55,7 +56,6 @@ namespace Prosoft.WindowsUI
 
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
 
             var border = sender as Border;
 

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Prosoft.Core.Atributes;
+using System.Reflection;
 
 namespace Prosoft.Core
 {
@@ -7,11 +8,11 @@ namespace Prosoft.Core
 
         private readonly List<IModule> _modules = new List<IModule>();
 
+
         public List<IModule> Modules
         {
             get { return _modules; }
         }
-
 
         public void LoadModules(string path)
         {
@@ -40,6 +41,7 @@ namespace Prosoft.Core
                     Console.WriteLine($"Error loading module from {file}: {ex.Message}");
                 }
             }
+
         }
     }
 }

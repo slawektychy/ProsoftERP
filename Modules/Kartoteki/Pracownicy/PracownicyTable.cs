@@ -1,4 +1,5 @@
 ﻿using Prosoft.Core;
+using Prosoft.Core.Atributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Prosoft.Modules.Kartoteki
 {
-    [MenuRegistration("Kartoteki/Pracownicy")]
+    [MenuRegistration("Kartoteki/Pracownicy", typeof(KontrahenciTable))]
     public class PracownicyTable : BaseTable<PracownikRow>
     {
         public override string TableName => "Pracownicy";

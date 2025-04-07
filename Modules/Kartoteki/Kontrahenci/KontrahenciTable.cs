@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prosoft.Core;
+using Prosoft.Core.Atributes;
 
 namespace Prosoft.Modules.Kartoteki
 {
-    [MenuRegistration("Kartoteki/Kontrahenci")]
+    [MenuRegistration("Kartoteki/Kontrahenci", typeof(KontrahenciTable))]
     public class KontrahenciTable : BaseTable<KontrahentRow>
     {
         public override string TableName => "Kontrahenci";

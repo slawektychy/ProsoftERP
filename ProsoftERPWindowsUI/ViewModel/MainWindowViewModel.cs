@@ -1,4 +1,5 @@
 ﻿using Prosoft.Core;
+using Prosoft.Core.Atributes;
 using Prosoft.WindowsUI;
 using Prosoft.WindowsUI.Controls;
 using System;
@@ -11,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Prosoft.WindowsUI
 {
@@ -18,6 +20,7 @@ namespace Prosoft.WindowsUI
     {
         public ObservableCollection<TabItemModel> Tabs { get; set; } = new ObservableCollection<TabItemModel>();
         //public ObservableCollection<IModule> Modules { get; } = new ObservableCollection<IModule>(ApplicationContext.Instance.GetLoadedModules());
+        //ObservableCollection<Type> MenuRegistredClasses { get;} = new ObservableCollection<Type>(ApplicationContext.Instance.GetLoadedModules());
 
         #region Zakładki
 
@@ -38,10 +41,8 @@ namespace Prosoft.WindowsUI
             // Dodajemy stronę startową
             SetTabContent("...", new StartPage(this));
             SetLeftMenuContent();
+        
 
-
-
-          
         }
 
         public void SetTabContent(string title, UserControl content)
@@ -66,28 +67,28 @@ namespace Prosoft.WindowsUI
 
         void SetLeftMenuContent()
         {
-            MenuItems = new List<LeftMenuItemModel>
-                 {
-            new LeftMenuItemModel { Header = "Kartoteki", Children = new List<LeftMenuItemModel>
-                {
-                    new LeftMenuItemModel { Header = "Klient Nowy" },
-                    new LeftMenuItemModel { Header = "Dostawca" },
-                    new LeftMenuItemModel { Header = "Produkt" }
+
+            MenuItems = new List<LeftMenuItemModel>();
+            List<string> levelOne = new List<string>();
+
+            ObservableCollection<Type> MenuRegistredClasses = new ObservableCollection<Type> (ApplicationContext.Instance.GetMenuItems());
+            foreach (var type in MenuRegistredClasses)
+            {
+                var attr = type.GetCustomAttribute<MenuRegistrationAttribute>();
+                string menuPath = attr.MenuPath;
+
+                string[] items = menuPath.Split('/');
+                LeftMenuItemModel? item = MenuItems.Where(i=>i.Header == items[0]).FirstOrDefault();
+                if(item == null) {
+                    item = new LeftMenuItemModel { Header = items[0] };
+                    MenuItems.Add(item);
                 }
-            },
-            new LeftMenuItemModel { Header = "Developer", Children = new List<LeftMenuItemModel>
-                {
-                    new LeftMenuItemModel { Header = "Opcja 1" },
-                    new LeftMenuItemModel { Header = "Opcja 2", Children = new List<LeftMenuItemModel>
-                        {
-                            new LeftMenuItemModel { Header = "Subopcja 2.1" },
-                            new LeftMenuItemModel { Header = "Subopcja 2.2" }
-                        }
-                    },
-                    new LeftMenuItemModel { Header = "Opcja 3" }
-                }
+                item.Children.Add(new LeftMenuItemModel { Header = items[1] });
             }
-        };
+            OnPropertyChanged(nameof(MenuItems));
+
+
+
         }
 
         public List<LeftMenuItemModel> MenuItems { get; set; }
