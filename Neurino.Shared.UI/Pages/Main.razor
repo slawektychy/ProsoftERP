@@ -1,44 +1,62 @@
 ﻿@page "/"
+
 @using Neurino.Core
+@using Neurino.Core.Atributes
 @using Neurino.Core.Models
 @using Neurino.Shared.UI.Components
+@using System.Reflection
+
+@inject ApplicationContext AppContext
 
 <div class="d-flex" style="height: 100vh;">
-    <div class="border-end bg-light p-2" style="width: 250px;">
-        <DynamicMenu MenuGroups="menuGroups" />
-    </div>
+
 
     <div class="p-3 flex-grow-1">
         <h3>Witamy!</h3>
         <p>Tu pojawi się zawartość po kliknięciu.</p>
+        <p>Zalogowany użytkownik: @AppContext.GetLoggedUserName()</p>
+
+        <h5>Menu zarejestrowane klasy:</h5>
+        <ul>
+            @foreach (var type in AppContext.GetMenuItems())
+            {
+                <li>T: @type.FullName</li>  @* lub @type.Name jeśli chcesz tylko nazwę klasy *@
+            }
+        </ul>
+
     </div>
 </div>
 
 @code {
-    private List<MenuGroup> menuGroups = new List<MenuGroup>();
-
     protected override void OnInitialized()
     {
-        menuGroups = new()
-        {
-            new MenuGroup
-            {
-                Title = "Kartoteki",
-                Items = new()
-                {
-                    new MenuItem { Title = "Kontrahenci", Link = "/kontrahenci" },
-                    new MenuItem { Title = "Pracownicy", Link = "/pracownicy" }
-                }
-            },
-            new MenuGroup
-            {
-                Title = "Magazyn",
-                Items = new()
-                {
-                    new MenuItem { Title = "Przyjęcia", Link = "/przyjecia" },
-                    new MenuItem { Title = "Wydania", Link = "/wydania" }
-                }
-            }
-        };
+        LoadModules();
     }
+
+
+    private void LoadModules()
+    {
+        ModuleLoader _loader = new ModuleLoader();
+        string moduleDir = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? "", "Modules");
+        _loader.LoadModules(moduleDir);
+        foreach (var module in _loader.Modules)
+        {
+            ApplicationContext.Instance.RegisterModule(module);
+        }
+
+        RegisterMenuInContext();
+
+    }
+
+    private void RegisterMenuInContext()
+    {
+        var classes = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(a => a.GetTypes())
+            .Where(t => t.GetCustomAttributes<MenuRegistrationAttribute>().Any())
+            .ToList();
+
+        ApplicationContext.Instance.RegisterMenuAtributClasses(classes);
+
+    }
+
 }

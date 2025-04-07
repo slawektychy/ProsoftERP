@@ -3,15 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProsoftERPWindowsUI", "ProsoftERPWindowsUI\ProsoftERPWindowsUI.csproj", "{A9F097F3-9AD6-4921-8508-337BC73AE1AB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3} = {7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosoft.Modules", "Modules\Prosoft.Modules.csproj", "{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prosoft.Core", "Prosoft.Core\Prosoft.Core.csproj", "{ADD5DF1B-9DF9-4280-A465-751031986344}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurino.Web", "Neurino.Web\Neurino.Web.csproj", "{7A84E334-6F74-414C-8E15-3A72084A90F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurino.Desktop", "Neurino.Desktop\Neurino.Desktop.csproj", "{AB8BC393-A59D-45D7-9080-8C60D0B9F135}"
@@ -20,22 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurino.Shared.UI", "Neurin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurino.Core", "Neurino.Core\Neurino.Core.csproj", "{30072BDF-303F-4331-B173-EA3495841920}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurino.Modules", "Neurino.Modules\Neurino.Modules.csproj", "{BCD6C4A7-7D35-4894-AB7C-5F6B0DAB84D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9F097F3-9AD6-4921-8508-337BC73AE1AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E01D842-0AD7-4B17-92C5-74C5B95FF0B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADD5DF1B-9DF9-4280-A465-751031986344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADD5DF1B-9DF9-4280-A465-751031986344}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADD5DF1B-9DF9-4280-A465-751031986344}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADD5DF1B-9DF9-4280-A465-751031986344}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A84E334-6F74-414C-8E15-3A72084A90F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A84E334-6F74-414C-8E15-3A72084A90F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A84E334-6F74-414C-8E15-3A72084A90F2}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -53,6 +36,10 @@ Global
 		{30072BDF-303F-4331-B173-EA3495841920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30072BDF-303F-4331-B173-EA3495841920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30072BDF-303F-4331-B173-EA3495841920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD6C4A7-7D35-4894-AB7C-5F6B0DAB84D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD6C4A7-7D35-4894-AB7C-5F6B0DAB84D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD6C4A7-7D35-4894-AB7C-5F6B0DAB84D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD6C4A7-7D35-4894-AB7C-5F6B0DAB84D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

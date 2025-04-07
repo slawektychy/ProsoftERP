@@ -1,12 +1,14 @@
-﻿
-namespace Prosoft.Core
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Neurino.Core
 {
-
-   
-
     public abstract class BaseTable<T> : ITable where T : BaseRow
     {
-        public abstract string TableName{get; }
+        public abstract string TableName { get; }
         public abstract string GetTableName();
         public abstract string GetModuleName();
 
@@ -24,7 +26,10 @@ namespace Prosoft.Core
     }
 
 
-  
+    public abstract class BaseRow
+    {
+        public int ID { get; set; }
+    }
 
     public interface ITable
     {
@@ -33,5 +38,4 @@ namespace Prosoft.Core
         string GetModuleName();
 
     }
-
 }

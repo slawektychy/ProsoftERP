@@ -1,16 +1,28 @@
-﻿using Prosoft.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Prosoft.Core
+namespace Neurino.Core
 {
     public class ApplicationContext
     {
-
         private static readonly Lazy<ApplicationContext> _instance = new Lazy<ApplicationContext>(() => new ApplicationContext());
         public static ApplicationContext Instance => _instance.Value;
+
+        private readonly List<IModule> _modules = new List<IModule>();
+        private readonly List<Type> _menuItems = new List<Type>();
+
+        public ApplicationContext() { }
+
+        #region Testy
+
+        public string LoggedUser { get; set; } = "anonim";
+        public string GetLoggedUserName() => LoggedUser;
+
+        #endregion
 
 
         /// <summary>
@@ -32,13 +44,6 @@ namespace Prosoft.Core
         }
 
 
-        private readonly List<IModule> _modules = new List<IModule>();
-        private readonly List<Type> _menuItems = new List<Type>();
-
-        //private readonly Dictionary<Type, object> _tables = new Dictionary<Type, object>();
-
-        private ApplicationContext() { }
-
         public void RegisterModule(IModule module)
         {
             _modules.Add(module);
@@ -49,7 +54,9 @@ namespace Prosoft.Core
         {
             _menuItems.AddRange(classess);
         }
-       
+
 
     }
+
+
 }

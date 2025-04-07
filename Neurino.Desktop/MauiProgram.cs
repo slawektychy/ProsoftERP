@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Neurino.Core;
 
 namespace Neurino.Desktop
 {
@@ -7,17 +8,7 @@ namespace Neurino.Desktop
         public static MauiApp CreateMauiApp()
         {
 
-            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
-            {
-                System.Diagnostics.Debug.WriteLine("UNHANDLED: " + args.ExceptionObject);
-            };
-
-
-            TaskScheduler.UnobservedTaskException += (sender, args) =>
-            {
-                System.Diagnostics.Debug.WriteLine("UNOBSERVED: " + args.Exception.Message);
-                args.SetObserved();
-            };
+            
 
             var builder = MauiApp.CreateBuilder();
             builder
@@ -27,10 +18,12 @@ namespace Neurino.Desktop
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
+            builder.Services.AddSingleton<ApplicationContext>();
             builder.Services.AddMauiBlazorWebView();
+            
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 
