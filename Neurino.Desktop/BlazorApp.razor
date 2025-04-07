@@ -1,13 +1,11 @@
-﻿@using Neurino.Desktop.Components.Layout
 @using Neurino.Shared.UI.Pages
+@using Neurino.Desktop.Components.Layout
 
 <Router AppAssembly="@typeof(BlazorApp).Assembly"
         AdditionalAssemblies="new[] { typeof(Main).Assembly }">
-
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
-
     <NotFound>
         <LayoutView Layout="@typeof(MainLayout)">
             <p>Nie znaleziono strony.</p>
