@@ -6,6 +6,19 @@ namespace Neurino.Desktop
     {
         public static MauiApp CreateMauiApp()
         {
+
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                System.Diagnostics.Debug.WriteLine("UNHANDLED: " + args.ExceptionObject);
+            };
+
+
+            TaskScheduler.UnobservedTaskException += (sender, args) =>
+            {
+                System.Diagnostics.Debug.WriteLine("UNOBSERVED: " + args.Exception.Message);
+                args.SetObserved();
+            };
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
