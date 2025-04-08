@@ -30,6 +30,8 @@
 </div>
 
 @code {
+
+
     protected override async Task OnInitializedAsync()
     {
         if (OperatingSystem.IsBrowser())
@@ -54,19 +56,19 @@
             AppContext.RegisterModule(module);
         }
         RegisterMenuInContext();
-
+        StateHasChanged();
     }
 
     private void LoadModules()
     {
-        // var loader = new ModuleLoader();
-        // loader.LoadModules();
+        var loader = new ModuleLoader();
+        loader.LoadModules();
 
-        // foreach (var module in loader.Modules)
-        // {
-        //     AppContext.RegisterModule(module);
-        // }
-        // RegisterMenuInContext();
+        foreach (var module in loader.Modules)
+        {
+            AppContext.RegisterModule(module);
+        }
+        RegisterMenuInContext();
 
     }
 
