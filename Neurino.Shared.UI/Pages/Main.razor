@@ -7,6 +7,8 @@
 @using System.Reflection
 
 @inject ApplicationContext AppContext
+@inject HttpClient Http
+
 
 <div class="d-flex" style="height: 100vh;">
 
@@ -28,23 +30,43 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        LoadModules();
+        if (OperatingSystem.IsBrowser())
+        {
+            await LoadModulesWeb();
+        }
+        else
+        {
+            LoadModules();
+        }
+
+        
     }
 
+    private async Task LoadModulesWeb()
+    {
+        var loader = new ModuleWebLoader(); // zwykła klasa
+        var modules = await loader.LoadModules(Http);
+
+        foreach (var module in modules)
+        {
+            AppContext.RegisterModule(module);
+        }
+        RegisterMenuInContext();
+
+    }
 
     private void LoadModules()
     {
-        ModuleLoader _loader = new ModuleLoader();
-        string moduleDir = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? "", "Modules");
-        _loader.LoadModules(moduleDir);
-        foreach (var module in _loader.Modules)
-        {
-            ApplicationContext.Instance.RegisterModule(module);
-        }
+        // var loader = new ModuleLoader();
+        // loader.LoadModules();
 
-        RegisterMenuInContext();
+        // foreach (var module in loader.Modules)
+        // {
+        //     AppContext.RegisterModule(module);
+        // }
+        // RegisterMenuInContext();
 
     }
 
@@ -55,8 +77,7 @@
             .Where(t => t.GetCustomAttributes<MenuRegistrationAttribute>().Any())
             .ToList();
 
-        ApplicationContext.Instance.RegisterMenuAtributClasses(classes);
-
+        AppContext.RegisterMenuAtributClasses(classes);
     }
-
 }
+

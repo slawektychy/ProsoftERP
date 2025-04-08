@@ -1,7 +1,10 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Collections.ObjectModel
+@inherits LayoutComponentBase
+@inject ApplicationContext AppContext
+
 <div class="page">
     <div class="sidebar">
-        <NavMenu />
+        <DynamicMenu />
     </div>
 
     <main>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neurino.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,11 +10,11 @@ namespace Neurino.Core
 {
     public class ApplicationContext
     {
-        private static readonly Lazy<ApplicationContext> _instance = new Lazy<ApplicationContext>(() => new ApplicationContext());
-        public static ApplicationContext Instance => _instance.Value;
+
+        public event Action? MenuChanged;
 
         private readonly List<IModule> _modules = new List<IModule>();
-        private readonly List<Type> _menuItems = new List<Type>();
+        private List<Type> _menuItems = new List<Type>();
 
         public ApplicationContext() { }
 
@@ -38,10 +39,7 @@ namespace Neurino.Core
         /// Zwraca listę zarejestrowanych pozycji menu
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Type> GetMenuItems()
-        {
-            return _menuItems;
-        }
+        public IEnumerable<Type> GetMenuItems() => _menuItems;
 
 
         public void RegisterModule(IModule module)
@@ -52,7 +50,8 @@ namespace Neurino.Core
 
         public void RegisterMenuAtributClasses(List<Type> classess)
         {
-            _menuItems.AddRange(classess);
+           _menuItems.AddRange(classess);
+            MenuChanged?.Invoke();
         }
 
 

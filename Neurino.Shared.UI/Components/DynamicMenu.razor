@@ -1,9 +1,16 @@
 ﻿@using Neurino.Core
 @using Microsoft.AspNetCore.Components.Routing
+@using Neurino.Core.Atributes
 @using Neurino.Core.Models
 
+@using System.Reflection
+@using System.Collections.ObjectModel
+
+
+@inject ApplicationContext AppContext
+
 <div id="accordionMenu" class="flex-column">
-    @foreach (var group in MenuGroups)
+    @foreach (var group in _menuGroups)
     {
         var collapseId = $"collapse_{group.Title.Replace(' ','_')}";
 
@@ -22,6 +29,43 @@
 </div>
 
 @code {
-    [Parameter]
-    public List<MenuGroup> MenuGroups { get; set; } = new();
+    
+
+    List<MenuGroup> _menuGroups { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        AppContext.MenuChanged += OnMenuChanged;
+    }
+
+    private void OnMenuChanged()
+    {
+
+        ObservableCollection<Type> MenuRegistredClasses = new ObservableCollection<Type>(AppContext.GetMenuItems());
+        foreach (var type in MenuRegistredClasses)
+        {
+            var attr = type.GetCustomAttribute<MenuRegistrationAttribute>();
+            string menuPath = attr.MenuPath;
+
+            string[] items = menuPath.Split('/');
+            var menuGroup = _menuGroups.Where(mg => mg.Title == items[0]).FirstOrDefault();
+            if (menuGroup == null)
+            {
+                menuGroup = new MenuGroup { Title = items[0] };
+                _menuGroups.Add(menuGroup);
+            }
+            menuGroup.Items.Add(new MenuItem
+                {
+                    Title = items[1],
+                    Link = $"/"
+                });
+        }
+
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        AppContext.MenuChanged -= OnMenuChanged;
+    }
 }

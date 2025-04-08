@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Neurino.Core\Neurino.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Kartoteki\Pracownicy\" />
-  </ItemGroup>
-
 </Project>

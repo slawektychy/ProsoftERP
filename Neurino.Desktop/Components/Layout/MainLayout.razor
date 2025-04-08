@@ -1,9 +1,11 @@
-﻿@using Neurino.Core.Models
+﻿
+@using System.Collections.ObjectModel
 @inherits LayoutComponentBase
+@inject ApplicationContext AppContext
 
 <div class="page">
     <div class="sidebar">
-        <DynamicMenu MenuGroups="menuGroups" />
+        <DynamicMenu />
     </div>
 
     <main>
@@ -16,31 +18,3 @@
         </article>
     </main>
 </div>
-@code {
-    private List<MenuGroup> menuGroups = new List<MenuGroup>();
-
-    protected override void OnInitialized()
-    {
-        menuGroups = new()
-        {
-            new MenuGroup
-            {
-                Title = "Kartoteki",
-                Items = new()
-                {
-                    new MenuItem { Title = "Kontrahenci", Link = "/" },
-                    new MenuItem { Title = "Pracownicy", Link = "/test" }
-                }
-            },
-            new MenuGroup
-            {
-                Title = "Magazyn",
-                Items = new()
-                {
-                    new MenuItem { Title = "Przyjęcia", Link = "/" },
-                    new MenuItem { Title = "Wydania", Link = "/" }
-                }
-            }
-        };
-    }
-}
