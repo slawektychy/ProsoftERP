@@ -15,12 +15,13 @@ namespace Neurino.Core
 
         private readonly List<IModule> _modules = new List<IModule>();
         private List<Type> _menuItems = new List<Type>();
+        public bool ModuleLoaded = false;
 
         public ApplicationContext() { }
 
         #region Testy
 
-        public string LoggedUser { get; set; } = "anonim";
+        public string LoggedUser { get; set; } = "Sławomir, Dobroś";
         public string GetLoggedUserName() => LoggedUser;
 
         #endregion

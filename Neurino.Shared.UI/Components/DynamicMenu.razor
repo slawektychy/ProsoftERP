@@ -5,33 +5,84 @@
 
 @using System.Reflection
 @using System.Collections.ObjectModel
+@using Neurino.Core.UI
 
 
 @inject ApplicationContext AppContext
 
-<div id="accordionMenu" class="flex-column">
-    @foreach (var group in _menuGroups)
-    {
-        var collapseId = $"collapse_{group.Title.Replace(' ','_')}";
+<div id="accordionMenu" class="flex-column" style="margin-top:20px;">
 
-    <div class="nav-item px-3 mb-2">
-        <a class="nav-link" data-bs-toggle="collapse" href="#@collapseId" role="button">
-            @group.Title
-        </a>
-        <div class="collapse ps-3" id="@collapseId" data-bs-parent="#accordionMenu">
-            @foreach (var item in group.Items)
+
+    <div class="input-group mb-3 px-2 compact">
+        <span class="input-group-text">
+            <i class="bi bi-search"></i>
+        </span>
+        <input type="text"
+               class="form-control"
+               placeholder="Szukaj..."
+               @bind="searchText"
+               @bind:event="oninput" />
+    </div>
+
+
+    <div class="nav-item menu-group">
+        <NavLink class="nav-link menu-link" href="#">
+            <a class="nav-link menu-link" role="button">
+                <i class="@AppIconMap.GetCssClass(AppIcon.Home)" style="margin-right: 0.5rem;"></i>
+                Start
+            </a>
+        </NavLink>
+    </div>
+
+    <div style="background: whitesmoke;height:1px; margin-bottom:10px"/>
+
+
+
+    @foreach (var group in _menuGroups.Where(g => g.Items.Any(i => IsMatch(i))))
+    {
+        var collapseId = $"collapse_{group.Title.Replace(' ', '_')}";
+
+        <div class="nav-item menu-group">
+            <a class="nav-link menu-link" data-bs-toggle="collapse" href="#@collapseId" role="button">
+                <i class="@AppIconMap.GetCssClass(AppIcon.Modules)" style="margin-right: 0.5rem;"></i>
+                @group.Title
+            </a>
+
+            <div class="collapse menu-sub @(ShouldExpandGroup(group) ? "show" : "")"
+            id="@collapseId"
+            data-bs-parent="#accordionMenu">
+                @foreach (var item in group.Items.Where(i => IsMatch(i)))
                 {
-                    <NavLink class="nav-link" href="@item.Link" Match="NavLinkMatch.All">@item.Title</NavLink>
+                    <NavLink class="nav-link menu-link" href="@item.Link" Match="NavLinkMatch.All">
+                        <i class="@AppIconMap.GetCssClass(AppIcon.Users)" style="margin-right: 0.5rem;"></i>
+                        @item.Title
+                    </NavLink>
                 }
             </div>
         </div>
     }
 </div>
-
 @code {
-    
+
 
     List<MenuGroup> _menuGroups { get; set; } = new();
+
+
+    private string searchText = string.Empty;
+
+    private bool IsMatch(MenuItem item)
+    {
+        if (string.IsNullOrWhiteSpace(searchText))
+            return true;
+
+        return item.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool ShouldExpandGroup(MenuGroup group)
+    {
+        return !string.IsNullOrWhiteSpace(searchText)
+            && group.Items.Any(i => IsMatch(i));
+    }
 
     protected override void OnInitialized()
     {
@@ -40,6 +91,7 @@
 
     private void OnMenuChanged()
     {
+        _menuGroups.Clear();
 
         ObservableCollection<Type> MenuRegistredClasses = new ObservableCollection<Type>(AppContext.GetMenuItems());
         foreach (var type in MenuRegistredClasses)

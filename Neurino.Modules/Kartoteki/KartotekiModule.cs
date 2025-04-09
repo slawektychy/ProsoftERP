@@ -37,23 +37,23 @@ namespace Neurino.Modules.Kartoteki
 
         public void RegisterTables()
         {
-            var tableTypes = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => t.BaseType != null && t.BaseType.IsGenericType &&
-                            t.BaseType.GetGenericTypeDefinition() == typeof(BaseTable<>));
+            //var tableTypes = Assembly.GetExecutingAssembly()
+            //    .GetTypes()
+            //    .Where(t => t.BaseType != null && t.BaseType.IsGenericType &&
+            //                t.BaseType.GetGenericTypeDefinition() == typeof(BaseTable<>));
 
-            foreach (var type in tableTypes)
-            {
-                var instance = Activator.CreateInstance(type) as dynamic;
-                if (instance != null)
-                {
-                    if (instance.GetModuleName() == Name)
-                    {
-                        _tableObjects.Add(instance);
-                        //Console.WriteLine($"Zarejestrowano tabelę {type.Name} w module Kartoteki");
-                    }
-                }
-            }
+            //foreach (var type in tableTypes)
+            //{
+            //    var instance = Activator.CreateInstance(type) as dynamic;
+            //    if (instance != null)
+            //    {
+            //        if (instance.GetModuleName() == Name)
+            //        {
+            //            _tableObjects.Add(instance);
+            //            //Console.WriteLine($"Zarejestrowano tabelę {type.Name} w module Kartoteki");
+            //        }
+            //    }
+            //}
         }
 
         public void RegisterRows()

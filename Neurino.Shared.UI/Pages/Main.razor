@@ -17,6 +17,7 @@
         <h3>Witamy!</h3>
         <p>Tu pojawi się zawartość po kliknięciu.</p>
         <p>Zalogowany użytkownik: @AppContext.GetLoggedUserName()</p>
+        <p>Ilość modułów: @AppContext.GetLoadedModules().Count()</p>
 
         <h5>Menu zarejestrowane klasy:</h5>
         <ul>
@@ -34,13 +35,20 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (OperatingSystem.IsBrowser())
+
+        if (!AppContext.ModuleLoaded)
         {
-            await LoadModulesWeb();
-        }
-        else
-        {
-            LoadModules();
+
+            if (OperatingSystem.IsBrowser())
+            {
+                await LoadModulesWeb();
+            }
+            else
+            {
+                LoadModules();
+            }
+
+            AppContext.ModuleLoaded = true;
         }
 
         
